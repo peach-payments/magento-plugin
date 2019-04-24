@@ -1,0 +1,6 @@
+# app/code
+app/code/community/PeachPayments/Hosted            app/code/community/PeachPayments/Hosted
+# app/etc
+app/etc/modules/PeachPayments_Hosted.xml            app/etc/modules/PeachPayments_Hosted.xml
+# app/design
+app/design/frontend/base/default/template/peachpayments_hosted/redirect.phtml            app/design/frontend/base/default/template/peachpayments_hosted/redirect.phtml

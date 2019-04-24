@@ -1,0 +1,16 @@
+{
+  "name": "peachpayments/magento-module-hosted-payments",
+  "description": "Peach Payments hosted magento-1 module",
+  "type": "magento-module",
+  "license": "BSD-3-Clause",
+  "authors": [
+    {
+      "name": "Francois Raubenheimer",
+      "email": "rootindex@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "magento-hackathon/magento-composer-installer": "*"
+  }
+}

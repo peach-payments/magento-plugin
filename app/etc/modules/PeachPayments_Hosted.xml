@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) 2019 Peach Payments. All rights reserved. Developed by Francois Raubenheimer
+  -->
+<config>
+    <modules>
+        <PeachPayments_Hosted>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Mage_Payment/>
+            </depends>
+        </PeachPayments_Hosted>
+    </modules>
+</config>

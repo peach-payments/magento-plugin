@@ -1,0 +1,302 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) 2019 Peach Payments. All rights reserved. Developed by Francois Raubenheimer
+  -->
+<config>
+    <sections>
+        <payment>
+            <groups>
+                <peachpayments_hosted>
+                    <label><![CDATA[Peach Payments - Hosted All-in-One payment solution for emerging African markets.]]></label>
+                    <comment><![CDATA[
+                        <img src="https://peachpayments.s3.eu-west-1.amazonaws.com/logo.svg" style="width:200px"/>
+                        <br />
+                        If you require assistance with configurations, please contact your account manager at <a style="text-decoration:none" href="tel:+27212005877">+27-21-2005877</a> or <a style="text-decoration:none" href="mailto:support@peachpayments.com">support@peachpayments.com</a>
+                    ]]></comment>
+                    <sort_order>99</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>1</expanded>
+                    <fields>
+                        <active>
+                            <label>Enable</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <shared>1</shared>
+                            <sort_order>10</sort_order>
+                        </active>
+                        <mode>
+                            <label><![CDATA[Mode]]></label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>peachpayments_hosted/system_config_source_mode</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <shared>1</shared>
+                            <sort_order>15</sort_order>
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                        </mode>
+                        <entity_id>
+                            <label>Entity ID</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>23</sort_order>
+                            <depends>
+                                <active>1</active>
+                                <mode>1</mode>
+                            </depends>
+                            <validate>required-entry</validate>
+                        </entity_id>
+                        <sign_key>
+                            <label>Secret Token</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>24</sort_order>
+                            <depends>
+                                <active>1</active>
+                                <mode>1</mode>
+                            </depends>
+                            <validate>required-entry</validate>
+                        </sign_key>
+                        <entity_id_sandbox>
+                            <label><![CDATA[Entity ID (Sandbox)]]></label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>23</sort_order>
+                            <depends>
+                                <active>1</active>
+                                <mode>0</mode>
+                            </depends>
+                            <validate>required-entry</validate>
+                        </entity_id_sandbox>
+                        <sign_key_sandbox>
+                            <label><![CDATA[Secret Token (Sandbox)]]></label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>24</sort_order>
+                            <depends>
+                                <active>1</active>
+                                <mode>0</mode>
+                            </depends>
+                            <validate>required-entry</validate>
+                        </sign_key_sandbox>
+                        <methods translate="label comment">
+                            <label>Display Methods</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>peachpayments_hosted/system_config_source_method</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Displayable payment methods]]></comment>
+                            <sort_order>26</sort_order>
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <validate>validate-select required-entry</validate>
+                        </methods>
+                        <advanced>
+                            <label><![CDATA[Show Advanced]]></label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <shared>1</shared>
+                            <sort_order>28</sort_order>
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                        </advanced>
+                        <currency translate="label comment">
+                            <label>Allowed Currencies</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>peachpayments_hosted/system_config_source_currency</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Allowed currencies for this payment method.]]></comment>
+                            <sort_order>30</sort_order>
+                            <depends>
+                                <active>1</active>
+                                <advanced>1</advanced>
+                            </depends>
+                            <validate>validate-select required-entry</validate>
+                        </currency>
+                        <allowspecific translate="label">
+                            <label>Payment from Applicable Countries</label>
+                            <frontend_type>allowspecific</frontend_type>
+                            <sort_order>50</sort_order>
+                            <source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <active>1</active>
+                                <advanced>1</advanced>
+                                <mode>1</mode>
+                            </depends>
+                        </allowspecific>
+                        <specificcountry translate="label">
+                            <label>Payment from Specific Countries</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>51</sort_order>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                            <depends>
+                                <active>1</active>
+                                <advanced>1</advanced>
+                                <allowspecific>1</allowspecific>
+                            </depends>
+                        </specificcountry>
+                        <min_order_total translate="label">
+                            <label>Min order total</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>90</sort_order>
+                            <depends>
+                                <active>1</active>
+                                <advanced>1</advanced>
+                            </depends>
+                            <validate>validate-number validate-greater-than-zero required-entry</validate>
+                        </min_order_total>
+                        <max_order_total translate="label">
+                            <label>Max order total</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>100</sort_order>
+                            <depends>
+                                <active>1</active>
+                                <advanced>1</advanced>
+                            </depends>
+                            <validate>validate-number validate-greater-than-zero required-entry</validate>
+                        </max_order_total>
+                        <sort_order translate="label">
+                            <label>Sort Order</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>110</sort_order>
+                            <depends>
+                                <active>1</active>
+                                <advanced>1</advanced>
+                            </depends>
+                            <validate>validate-number validate-greater-than-zero required-entry</validate>
+                        </sort_order>
+                        <title_card translate="label comment">
+                            <label>Card Title</label>
+                            <config_path>payment/peachpayments_hosted_card/title</config_path>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Title that displays on the checkout page for the CARD method if displayed.]]></comment>
+                            <sort_order>200</sort_order>
+                            <depends>
+                                <active>1</active>
+                                <advanced>1</advanced>
+                            </depends>
+                            <validate>required-entry</validate>
+                        </title_card>
+                        <title_eftsecure translate="label comment">
+                            <label>EFTSecure Title</label>
+                            <config_path>payment/peachpayments_hosted_eftsecure/title</config_path>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Title that displays on the checkout page for the EFTSECURE method if displayed.]]></comment>
+                            <sort_order>210</sort_order>
+                            <depends>
+                                <active>1</active>
+                                <advanced>1</advanced>
+                            </depends>
+                            <validate>required-entry</validate>
+                        </title_eftsecure>
+                        <title_masterpass translate="label comment">
+                            <label>MasterPass Title</label>
+                            <config_path>payment/peachpayments_hosted_masterpass/title</config_path>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Title that displays on the checkout page for the MASTERPASS method if displayed.]]></comment>
+                            <sort_order>220</sort_order>
+                            <depends>
+                                <active>1</active>
+                                <advanced>1</advanced>
+                            </depends>
+                            <validate>required-entry</validate>
+                        </title_masterpass>
+                        <title_mobicred translate="label comment">
+                            <label>MOBICRED Title</label>
+                            <config_path>payment/peachpayments_hosted_mobicred/title</config_path>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Title that displays on the checkout page for the MOBICRED method if displayed.]]></comment>
+                            <sort_order>230</sort_order>
+                            <depends>
+                                <active>1</active>
+                                <advanced>1</advanced>
+                            </depends>
+                            <validate>required-entry</validate>
+                        </title_mobicred>
+                        <title_mpesa translate="label comment">
+                            <label>M-Pesa Title</label>
+                            <config_path>payment/peachpayments_hosted_mpesa/title</config_path>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Title that displays on the checkout page for the MPESA method if displayed.]]></comment>
+                            <sort_order>240</sort_order>
+                            <depends>
+                                <active>1</active>
+                                <advanced>1</advanced>
+                            </depends>
+                            <validate>required-entry</validate>
+                        </title_mpesa>
+                        <title_ozow translate="label comment">
+                            <label>OZOW Title</label>
+                            <config_path>payment/peachpayments_hosted_ozow/title</config_path>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Title that displays on the checkout page for the OZOW method if displayed.]]></comment>
+                            <sort_order>250</sort_order>
+                            <depends>
+                                <active>1</active>
+                                <advanced>1</advanced>
+                            </depends>
+                            <validate>required-entry</validate>
+                        </title_ozow>
+                    </fields>
+                </peachpayments_hosted>
+            </groups>
+        </payment>
+    </sections>
+</config>

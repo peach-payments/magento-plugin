@@ -1,0 +1,45 @@
+<?php
+/**
+ * Copyright (c) 2019 Peach Payments. All rights reserved. Developed by Francois Raubenheimer
+ */
+/** @var $this PeachPayments_Hosted_Block_Wait */
+?>
+<html lang="en">
+<head>
+    <title>Confirming Secure Payment</title>
+    <style>
+        body {
+            background: #e9ecef;
+        }
+        .container {
+            max-width: 684px;
+            padding: 30px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 1px 0 rgba(10, 31, 68, 0.08), 0 4px 20px 0 rgba(10, 31, 68, 0.1);
+            margin: 5vh auto;
+            text-align: center;
+            font-size: 1.1em;
+            color: #0A1F44;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <?php echo $this->__('Confirming payment, Please wait %s seconds.', '<span id="counterDown">10</span>'); ?>
+    <script type="application/javascript">
+      setTimeout(() => {
+        document.location.href = '<?php echo $this->getRedirectUrl(); ?>';
+      }, 10000);
+
+      var counterDown = 10;
+      setInterval(() => {
+        if (counterDown !== 0) {
+          counterDown--;
+          document.getElementById('counterDown').innerHTML = counterDown;
+        }
+      }, 1000);
+    </script>
+</div>
+</body>
+</html>

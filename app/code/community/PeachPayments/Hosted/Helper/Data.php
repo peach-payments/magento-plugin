@@ -72,6 +72,15 @@ class PeachPayments_Hosted_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * @return string
      */
+    public function getWaitingUrl()
+    {
+        $orderId = Mage::app()->getRequest()->getParam('id');
+        return Mage::getUrl('peachpayments_hosted/secure/payment', ['merchantTransactionId' => $orderId]);
+    }
+
+    /**
+     * @return string
+     */
     public function getEntityId()
     {
         return $this->getConfig('entity_id');
@@ -280,7 +289,7 @@ class PeachPayments_Hosted_Helper_Data extends Mage_Core_Helper_Abstract
             ->load($result->getData('order_id'));
         /** @var Mage_Sales_Model_Order_Payment $payment */
         $payment = $order->getPayment();
-
+        
         if (($resultCode === '000.000.000' || $resultCode === '000.100.110')
             && $order instanceof Mage_Sales_Model_Order
             && $payment instanceof Mage_Sales_Model_Order_Payment
@@ -314,9 +323,15 @@ class PeachPayments_Hosted_Helper_Data extends Mage_Core_Helper_Abstract
                 }
 
                 $payment->setMethod('peachpayments_hosted_' . $methodCode);
-
-                if ($order->getCanSendNewEmailFlag()) {
+                
+                if ($order->getCanSendNewEmailFlag() && $this->getConfig('send_order_email', true)) {
                     $order->queueNewOrderEmail();
+                }
+                
+                if ($this->getConfig('send_invoice_email', true)) {
+                    foreach ($order->getInvoiceCollection() as $invoice) {
+                        $invoice->sendEmail();
+                    }
                 }
 
                 $order->save();
@@ -328,7 +343,7 @@ class PeachPayments_Hosted_Helper_Data extends Mage_Core_Helper_Abstract
             return true;
         }
 
-        if ($resultCode !== '000.200.000') {
+        if ($resultCode !== '000.200.000' && $resultCode !== '000.200.100') {
             try {
                 $order->cancel();
                 $order->save();

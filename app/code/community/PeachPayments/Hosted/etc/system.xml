@@ -204,6 +204,34 @@
                             </depends>
                             <validate>validate-number validate-greater-than-zero required-entry</validate>
                         </sort_order>
+                        <send_order_email>
+                            <label><![CDATA[Send Order Email]]></label>
+                            <comment>Send the order email after a successful confirmed payment.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <shared>1</shared>
+                            <sort_order>121</sort_order>
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                        </send_order_email>
+                        <send_invoice_email>
+                            <label><![CDATA[Send Invoice Email]]></label>
+                            <comment>Send invoice email after creating the invoice successfully.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <shared>1</shared>
+                            <sort_order>122</sort_order>
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                        </send_invoice_email>                        
                         <title_card translate="label comment">
                             <label>Card Title</label>
                             <config_path>payment/peachpayments_hosted_card/title</config_path>

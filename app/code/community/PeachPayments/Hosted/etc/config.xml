@@ -63,6 +63,8 @@
                 <payment_action>order</payment_action>
                 <sort_order>10</sort_order>
                 <methods>CARD</methods>
+                <send_order_email>1</send_order_email>
+                <send_invoice_email>0</send_invoice_email>
             </peachpayments_hosted>
             <peachpayments_hosted_card>
                 <active>1</active>

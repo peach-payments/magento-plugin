@@ -115,11 +115,33 @@ class PeachPayments_Hosted_SecureController extends Mage_Core_Controller_Front_A
                 return;
             }
 
+            if($this->isWaiting($webHookM->getData('result_code'))) {
+                $this->_redirect('*/*/wait', ['real_order_id' => $incrementId]);
+                return;
+            }
         }
 
         $helper->restoreQuote();
         $this->_redirect('checkout/cart');
         return;
+    }
+
+    /**
+     * Wait action
+     */
+    public function waitAction()
+    {
+        $block = $this->getLayout()
+            ->createBlock(
+                'peachpayments_hosted/wait',
+                'wait',
+                [
+                    'id' => $this->getRequest()->getParam('merchantTransactionId')
+                ]
+            )->toHtml();
+
+        $this->getResponse()
+            ->setBody($block);
     }
 
     /**
@@ -129,6 +151,15 @@ class PeachPayments_Hosted_SecureController extends Mage_Core_Controller_Front_A
     private function isSuccessful($resultCode)
     {
         return $resultCode === '000.000.000' || $resultCode === '000.100.110' ? true : false;
+    }
+
+    /**
+     * @param string $resultCode
+     * @return bool
+     */
+    private function isWaiting($resultCode)
+    {
+        return $resultCode === '000.200.000' || $resultCode === '000.200.100' ? true : false;
     }
 
     /**

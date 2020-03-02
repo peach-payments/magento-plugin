@@ -150,7 +150,7 @@ class PeachPayments_Hosted_SecureController extends Mage_Core_Controller_Front_A
      */
     private function isSuccessful($resultCode)
     {
-        return $resultCode === '000.000.000' || $resultCode === '000.100.110' ? true : false;
+        return $resultCode === '000.000.000' || $resultCode === '000.100.110' || $resultCode === '000.100.111' || $resultCode === '000.100.112' ? true : false;
     }
 
     /**

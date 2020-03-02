@@ -290,7 +290,7 @@ class PeachPayments_Hosted_Helper_Data extends Mage_Core_Helper_Abstract
         /** @var Mage_Sales_Model_Order_Payment $payment */
         $payment = $order->getPayment();
         
-        if (($resultCode === '000.000.000' || $resultCode === '000.100.110')
+        if (($resultCode === '000.000.000' || $resultCode === '000.100.110' || $resultCode === '000.100.111' || $resultCode === '000.100.112')
             && $order instanceof Mage_Sales_Model_Order
             && $payment instanceof Mage_Sales_Model_Order_Payment
         ) {
